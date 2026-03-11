@@ -1,0 +1,25 @@
+name: Global Sentinel Handshake
+on:
+  push:
+    branches: [ "main" ] # Runs every time you push to main
+
+jobs:
+  handshake-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write' # This allows the secure handshake
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Google Auth
+      uses: 'google-github-actions/auth@v2'
+      with:
+        # We will fill these two lines in once Terrel finishes his part 
+        workload_identity_provider: 'projects/330110560042/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+        service_account: 'sentinel-bot@uiw-sentinel-agent.iam.gserviceaccount.com'
+
+    - name: 'Verify Cloud Connection'
+      run: 'gcloud info'
