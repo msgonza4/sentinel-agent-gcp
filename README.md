@@ -9,6 +9,7 @@ We have successfully established the foundational environment for the Sentinel A
 
 
 Key Technical Achievements:
+
 Zero-Trust Authentication: Implemented Workload Identity Federation to establish a secure "Handshake" between GitHub and GCP. This eliminates the need for static JSON service account keys.
 
 Automated CI/CD: Configured a GitHub Actions pipeline to handle automated deployments to the cloud.
@@ -20,6 +21,7 @@ Service Account Management: Provisioned the sentinel-bot with "Least Privilege" 
 
 
 🏗️ The Architecture
+
 Source Control: GitHub (msgonza4/sentinel-agent-gcp)
 
 Cloud Provider: Google Cloud Platform (uiw-sentinel-agent)
@@ -35,6 +37,7 @@ Security: IAM Workload Identity Federation
 
 
 👥 The Team
+
 Mia G. (msgonza4): Security & DevOps Lead (IAM, Identity Federation, GitHub Actions)
 
 Terrel E. (telliottks44): Infrastructure & Cloud Architect (GCP Project Setup, API Management)
