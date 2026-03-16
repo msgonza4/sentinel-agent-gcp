@@ -22,6 +22,9 @@ Service Account Management: Provisioned the sentinel-bot with "Least Privilege" 
 
 
 
+
+
+
 🏗️ The Architecture
 
 Source Control: GitHub (msgonza4/sentinel-agent-gcp)
