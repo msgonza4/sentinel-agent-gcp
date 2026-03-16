@@ -45,6 +45,7 @@ Terrel E. (telliottks44): Infrastructure & Cloud Architect (GCP Project Setup, A
 
 
 📅 Roadmap
+
 [x] Phase 1: Infrastructure, IAM Handshake, and API Enablement (Due Mar 22)
 
 [ ] Phase 2: AI Logic & Python Agent Development
