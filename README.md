@@ -1,3 +1,4 @@
+![Build Status](https://github.com/msgonza4/sentinel-agent-gcp/actions/workflows/deploy.yml/badge.svg)
 UIW Sentinel Agent (GCP)
 
 🛡️ Project Overview
