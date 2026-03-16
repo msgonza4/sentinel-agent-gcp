@@ -1,4 +1,5 @@
 UIW Sentinel Agent (GCP)
+
 🛡️ Project Overview
 The UIW Sentinel Agent is a cloud-native cybersecurity implementation designed to perform automated AI-driven sentiment analysis. This project demonstrates a "loosely coupled" architecture using Google Cloud Platform (GCP) and GitHub Actions, focusing on secure identity management and serverless scalability.
 
