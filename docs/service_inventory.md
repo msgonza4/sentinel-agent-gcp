@@ -1,4 +1,6 @@
 Service Inventory: uiw-sentinel-agent
+
+
 This document lists the Google Cloud Platform (GCP) services enabled for the Sentinel Agent project. Per the project requirements, we have identified the core IaaS components that underpin our PaaS/SaaS choices.
 
 1. Core Infrastructure (IaaS)
