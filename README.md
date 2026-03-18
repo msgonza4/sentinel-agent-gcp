@@ -47,7 +47,7 @@ Security: IAM Workload Identity Federation
 
 Mia G. (@msgonza4): Security & DevOps Lead (IAM, Identity Federation, System Specs)
 
-Terrel E. (@telliottks44): Infrastructure & Cloud Architect (GCP Setup, API Ecosystem, Agent Builder)
+Terrel E. (@T-Elliott01): Infrastructure & Cloud Architect (GCP Setup, API Ecosystem, Agent Builder)
 
 
 
