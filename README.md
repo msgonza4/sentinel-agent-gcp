@@ -1,11 +1,15 @@
 ![Build Status](https://github.com/msgonza4/sentinel-agent-gcp/actions/workflows/deploy.yml/badge.svg)
 
 UIW Sentinel Agent (GCP)
+
+
 🛡️ Project Overview
+
 The UIW Sentinel Agent is a cloud-native cybersecurity implementation designed for autonomous, agentic threat detection. This project demonstrates a "loosely coupled" architecture using Vertex AI and GitHub Actions, focusing on Spec-Driven Development to prevent model drift.
 
 
 🚀 Phase 1: Infrastructure & Identity (Complete)
+
 We have successfully established the foundational environment for the Sentinel Agent.
 
 Zero-Trust Authentication: Implemented Workload Identity Federation for a keyless "Handshake" between GitHub and GCP.
