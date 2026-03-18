@@ -5,11 +5,15 @@
 - [ ] Initialize GitHub Repository & Team Access
 - [ ] Enable 10 Google Cloud APIs (Cloud Run, Build, Secret Manager, etc.)
 - [ ] Establish CI/CD Pipeline via GitHub Actions
+- [ ] NEW: Enable Vertex AI Platform API (Final task to bridge to Phase 2)
 
 ## [March 23 - April 5] Phase 2: AI Logic
 - [ ] Develop Python script for Sentiment Analysis
 - [ ] Integrate Google Natural Language API
 - [ ] Unit testing for "Reasoning" logic
+- [ ] NEW: Update Service Account with aiplatform.user permissions (Mia)
+- [ ] NEW: Define "Security Spec" for Model Drift protection (Mia/Terrel)
+- [ ] Initialize Agent Builder in Vertex AI (Terrel)
 
 ## [April 6 - April 19] Phase 3: Data & Security
 - [ ] Initialize Firestore (Native Mode)
