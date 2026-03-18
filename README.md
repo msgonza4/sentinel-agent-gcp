@@ -1,27 +1,20 @@
 ![Build Status](https://github.com/msgonza4/sentinel-agent-gcp/actions/workflows/deploy.yml/badge.svg)
 
 UIW Sentinel Agent (GCP)
-
 🛡️ Project Overview
-The UIW Sentinel Agent is a cloud-native cybersecurity implementation designed to perform automated AI-driven sentiment analysis. This project demonstrates a "loosely coupled" architecture using Google Cloud Platform (GCP) and GitHub Actions, focusing on secure identity management and serverless scalability.
+The UIW Sentinel Agent is a cloud-native cybersecurity implementation designed for autonomous, agentic threat detection. This project demonstrates a "loosely coupled" architecture using Vertex AI and GitHub Actions, focusing on Spec-Driven Development to prevent model drift.
+
 
 🚀 Phase 1: Infrastructure & Identity (Complete)
 We have successfully established the foundational environment for the Sentinel Agent.
 
+Zero-Trust Authentication: Implemented Workload Identity Federation for a keyless "Handshake" between GitHub and GCP.
 
+Automated CI/CD: Configured GitHub Actions to handle secure, automated deployments.
 
-Key Technical Achievements:
+Cloud Provisioning: Enabled 30+ Google Cloud APIs, including the Vertex AI Platform and Cloud Run.
 
-Zero-Trust Authentication: Implemented Workload Identity Federation to establish a secure "Handshake" between GitHub and GCP. This eliminates the need for static JSON service account keys.
-
-Automated CI/CD: Configured a GitHub Actions pipeline to handle automated deployments to the cloud.
-
-Cloud Provisioning: Enabled 30+ Google Cloud APIs, including Cloud Run, Firestore, and the Natural Language AI API.
-
-Service Account Management: Provisioned the sentinel-bot with "Least Privilege" permissions to manage cloud resources securely.
-
-
-
+Identity Hardening: Provisioned sentinel-bot with "Least Privilege" permissions.
 
 
 
@@ -35,7 +28,9 @@ Compute: Cloud Run (Serverless)
 
 Database: Cloud Firestore (Native Mode)
 
-AI Engine: Cloud Natural Language API
+AI Orchestration: Vertex AI Agent Builder
+
+Model: Cloud Opus 4.6 (Reasoning Engine)
 
 Security: IAM Workload Identity Federation
 
@@ -43,18 +38,19 @@ Security: IAM Workload Identity Federation
 
 👥 The Team
 
-Mia G. (msgonza4): Security & DevOps Lead (IAM, Identity Federation, GitHub Actions)
+Mia G. (@msgonza4): Security & DevOps Lead (IAM, Identity Federation, System Specs)
 
-Terrel E. (telliottks44): Infrastructure & Cloud Architect (GCP Project Setup, API Management)
+Terrel E. (@telliottks44): Infrastructure & Cloud Architect (GCP Setup, API Ecosystem, Agent Builder)
 
 
 
 📅 Roadmap
 
-[x] Phase 1: Infrastructure, IAM Handshake, and API Enablement (Done)
+[x] Phase 1: Infrastructure, IAM Handshake, and Vertex AI Enablement (Done)
 
-[ ] Phase 2: AI Logic & Python Agent Development
+[ ] Phase 2: Agentic Orchestration & Spec-Driven Development
 
-[ ] Phase 3: Deployment & Integration Testing
+[ ] Phase 3: Integration Testing & Model Drift Evaluation
 
-[ ] Phase 4: Final Documentation, Security Audit, and Project Presentation
+[ ] Phase 4: Final Security Audit and Project Presentationg
+
