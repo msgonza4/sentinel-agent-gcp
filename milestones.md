@@ -2,14 +2,17 @@
 **Timeline:** March 9, 2026 – May 1, 2026
 
 ## [March 9 - March 22] Phase 1: Infrastructure
-- [ ] Initialize GitHub Repository & Team Access
-- [ ] Enable 10 Google Cloud APIs (Cloud Run, Build, Secret Manager, etc.)
-- [ ] Establish CI/CD Pipeline via GitHub Actions
+- [x] Initialize GitHub Repository & Team Access
+- [x] Establish OIDC "Handshake" (Workload Identity Federation)
+- [ ] Enable Core GCP APIs (Cloud Run, Build, Firestore, etc.)
+- [ ] NEW: Enable Vertex AI Platform API (Phase 2 Bridge)
 
-## [March 23 - April 5] Phase 2: AI Logic
-- [ ] Develop Python script for Sentiment Analysis
-- [ ] Integrate Google Natural Language API
-- [ ] Unit testing for "Reasoning" logic
+## [March 23 - April 5] Phase 2: Agentic Development
+- [ ] NEW: Update Service Account with aiplatform.user permissions (Mia)
+- [ ] NEW: Define "System Spec" for Security & Model Drift protection (Mia/Terrel)
+- [ ] Initialize Agent Builder in Vertex AI (Terrel)
+- [ ] Configure Agent Tools & Reasoning via Cloud Opus 4.6
+- [ ] Deploy Prototype Agent to Vertex AI Sandbox
 
 ## [April 6 - April 19] Phase 3: Data & Security
 - [ ] Initialize Firestore (Native Mode)
