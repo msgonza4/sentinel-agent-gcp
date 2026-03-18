@@ -10,6 +10,7 @@ The UIW Sentinel Agent is a cloud-native cybersecurity implementation designed f
 
 🚀 Phase 1: Infrastructure & Identity (Complete)
 
+
 We have successfully established the foundational environment for the Sentinel Agent.
 
 Zero-Trust Authentication: Implemented Workload Identity Federation for a keyless "Handshake" between GitHub and GCP.
@@ -23,6 +24,7 @@ Identity Hardening: Provisioned sentinel-bot with "Least Privilege" permissions.
 
 
 🏗️ The Architecture
+
 
 Source Control: GitHub (msgonza4/sentinel-agent-gcp)
 
@@ -42,6 +44,7 @@ Security: IAM Workload Identity Federation
 
 👥 The Team
 
+
 Mia G. (@msgonza4): Security & DevOps Lead (IAM, Identity Federation, System Specs)
 
 Terrel E. (@telliottks44): Infrastructure & Cloud Architect (GCP Setup, API Ecosystem, Agent Builder)
@@ -49,6 +52,7 @@ Terrel E. (@telliottks44): Infrastructure & Cloud Architect (GCP Setup, API Ecos
 
 
 📅 Roadmap
+
 
 [x] Phase 1: Infrastructure, IAM Handshake, and Vertex AI Enablement (Done)
 
