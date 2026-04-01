@@ -26,6 +26,20 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v2'
 
     - name: 'Verify Vertex AI Connectivity'
+
+
+    
+      run: |- name: 'Trigger Sentinel Agent Test'
       run: |
+        # This calls the Vertex AI Agent conversation endpoint
+        curl -X POST \
+        -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+        -H "Content-Type: application/json" \
+        https://us-central1-aiplatform.googleapis.com/v1/projects/330110560042/locations/us-central1/publishers/google/models/gemini-1.5-pro:streamGenerateContent \
+        -d '{
+          "contents": [{
+            "parts": [{"text": "Analyze this for social engineering: URGENT: Your UIW account will be deleted in 2 hours. Click here to verify: http://evil-link.com"}]
+          }]
+        }'
         echo "Testing if sentinel-bot can reach Vertex AI..."
         gcloud ai models list --region=us-central1 --limit=1
