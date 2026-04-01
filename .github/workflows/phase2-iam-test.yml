@@ -1,0 +1,31 @@
+name: "Phase 2: IAM & Vertex AI Connectivity Test"
+
+on:
+  workflow_dispatch: # Allows you to run this manually for the test
+
+jobs:
+  test-vertex-auth:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Required for OIDC Handshake
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Google Auth (The Handshake)
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: 'projects/330110560042/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+        service_account: 'sentinel-bot@uiw-sentinel-agent.iam.gserviceaccount.com'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
+
+    - name: 'Verify Vertex AI Connectivity'
+      run: |
+        echo "Testing if sentinel-bot can reach Vertex AI..."
+        gcloud ai models list --region=us-central1 --limit=1
