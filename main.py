@@ -47,7 +47,7 @@ def analyze_and_save(sample):
     token = result.stdout.strip()
 
     import urllib.request
-    url = f"https://us-central1-aiplatform.googleapis.com/v1/projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-2.5-flash-preview-09-2025:generateContent"
+    url = f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-2.5-flash-preview-09-2025:generateContent"
 
     payload = json.dumps({
         "contents": [{
