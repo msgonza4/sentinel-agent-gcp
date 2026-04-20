@@ -31,10 +31,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install --upgrade pip
-          pip install google-cloud-firestore==2.13.1
-          pip install google-cloud-aiplatform==1.38.1
-          pip install google-generativeai==0.3.2
+           pip install google-cloud-firestore google-auth
 
       - name: Run Sentinel Agent
         run: |
