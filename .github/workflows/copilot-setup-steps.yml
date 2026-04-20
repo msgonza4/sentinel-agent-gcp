@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sample_1",
+    "type": "phishing",
+    "subject": "Action Required: [Urgent] UIW Account Verification",
+    "body": "Scan the QR Code below to verify securely via your mobile device. Failure to verify will result in a lockout.",
+    "expected_score": 0.9
+  },
+  {
+    "id": "sample_2",
+    "type": "phishing",
+    "subject": "Quick Request - Mia",
+    "body": "Can you pick up 5 $100 Apple gift cards from the CVS on Broadway? I need the photos of the PINs.",
+    "expected_score": 0.8
+  },
+  {
+    "id": "sample_3",
+    "type": "safe",
+    "subject": "WiCyS UIW: Reminder - General Meeting",
+    "body": "Hi everyone! Meeting this Friday at 3:00 PM in the SEC building. See you there!",
+    "expected_score": 0.0
+  }
+]
