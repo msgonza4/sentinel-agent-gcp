@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install google-cloud-firestore google-cloud-aiplatform vertexai
+          pip install google-cloud-firestore google-cloud-aiplatform google-generativeai
 
       - name: Run Sentinel Agent
         run: |
