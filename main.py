@@ -1,20 +1,11 @@
 import json
 import datetime
-import os
 from google.cloud import firestore
-from google.auth import default
-import urllib.request
 
-# Initialize
 PROJECT_ID = "uiw-sentinel-agent"
-LOCATION = "us-east1"
-
-# Get credentials
-credentials, project = default()
-
 
 # Initialize Firestore
-db = firestore.Client(project=PROJECT_ID, credentials=credentials)
+db = firestore.Client(project=PROJECT_ID)
 
 SYSTEM_PROMPT = """You are UIW-Sentinel-Alpha. Analyze text for social engineering threats.
 Always respond ONLY in this exact JSON format with no extra text:
@@ -45,20 +36,26 @@ email_samples = [
     }
 ]
 
-def call_gemini(text, credentials):
-    from google.auth.transport.requests import Request
-    credentials.refresh(Request())
-    token = credentials.token
-    
+def analyze_and_save(sample):
+    print(f"\nAnalyzing {sample['id']} ({sample['type']})...")
+
+    import subprocess
+    result = subprocess.run(
+        ["gcloud", "auth", "print-access-token"],
+        capture_output=True, text=True
+    )
+    token = result.stdout.strip()
+
+    import urllib.request
     url = f"https://us-central1-aiplatform.googleapis.com/v1/projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent"
-    
+
     payload = json.dumps({
         "contents": [{
             "role": "user",
-            "parts": [{"text": f"{SYSTEM_PROMPT}\n\nAnalyze this:\n{text}"}]
+            "parts": [{"text": f"{SYSTEM_PROMPT}\n\nAnalyze this email:\nSubject: {sample['subject']}\nBody: {sample['body']}"}]
         }]
     }).encode('utf-8')
-    
+
     req = urllib.request.Request(
         url,
         data=payload,
@@ -67,41 +64,33 @@ def call_gemini(text, credentials):
             "Content-Type": "application/json"
         }
     )
-    
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode('utf-8'))
-        return result['candidates'][0]['content']['parts'][0]['text']
 
-def analyze_and_save(sample, credentials):
-    print(f"\nAnalyzing {sample['id']} ({sample['type']})...")
-    
-    raw = call_gemini(sample['body'], credentials).strip()
-    
+    with urllib.request.urlopen(req) as response:
+        data = json.loads(response.read().decode('utf-8'))
+        raw = data['candidates'][0]['content']['parts'][0]['text'].strip()
+
     if "```" in raw:
         raw = raw.split("```")[1]
         if raw.startswith("json"):
             raw = raw[4:]
-    
-    result = json.loads(raw.strip())
-    
+
+    result_data = json.loads(raw.strip())
+
     doc_ref = db.collection("agent-findings").document(sample['id'])
     doc_ref.set({
         "sample_id": sample['id'],
         "type": sample['type'],
         "subject": sample['subject'],
-        "threat_score": result["threat_score"],
-        "threat_vectors": result["threat_vectors"],
-        "mitigation_recommendation": result["mitigation_recommendation"],
+        "threat_score": result_data["threat_score"],
+        "threat_vectors": result_data["threat_vectors"],
+        "mitigation_recommendation": result_data["mitigation_recommendation"],
         "timestamp": datetime.datetime.utcnow()
     })
-    
-    print(f"Saved! Threat Score: {result['threat_score']}")
-    return result
+
+    print(f"Saved! Threat Score: {result_data['threat_score']}")
 
 if __name__ == "__main__":
     print("UIW Sentinel Agent - Running Analysis...")
-    credentials, _ = default()
-    
     for sample in email_samples:
-        analyze_and_save(sample, credentials)
+        analyze_and_save(sample)
     print("\nAll samples analyzed and saved!")
