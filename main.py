@@ -46,6 +46,10 @@ email_samples = [
 ]
 
 def call_gemini(text, credentials):
+    from google.auth.transport.requests import Request
+    credentials.refresh(Request())
+    token = credentials.token
+    
     url = f"https://us-central1-aiplatform.googleapis.com/v1/projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent"
     
     payload = json.dumps({
@@ -59,7 +63,7 @@ def call_gemini(text, credentials):
         url,
         data=payload,
         headers={
-            "Authorization": f"Bearer {credentials.token}",
+            "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"
         }
     )
