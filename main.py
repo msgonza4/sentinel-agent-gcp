@@ -3,7 +3,6 @@ import datetime
 import os
 from google.cloud import firestore
 from google.auth import default
-from google.auth.transport.requests import Request
 import urllib.request
 
 # Initialize
@@ -12,7 +11,7 @@ LOCATION = "us-east1"
 
 # Get credentials
 credentials, project = default()
-credentials.refresh(Request())
+
 
 # Initialize Firestore
 db = firestore.Client(project=PROJECT_ID, credentials=credentials)
@@ -98,7 +97,7 @@ def analyze_and_save(sample, credentials):
 if __name__ == "__main__":
     print("UIW Sentinel Agent - Running Analysis...")
     credentials, _ = default()
-    credentials.refresh(Request())
+    
     for sample in email_samples:
         analyze_and_save(sample, credentials)
     print("\nAll samples analyzed and saved!")
