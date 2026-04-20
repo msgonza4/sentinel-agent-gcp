@@ -12,7 +12,7 @@ db = firestore.Client(project=PROJECT_ID)
 
 # Initialize Agent
 model = GenerativeModel(
-    model_name="gemini-2.5-pro-002",
+    model_name="gemini-1.5-pro",
     system_instruction="""
     You are UIW-Sentinel-Alpha. Perform autonomous linguistic analysis 
     to identify External Threats via Social Engineering.
