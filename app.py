@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 from google.cloud import firestore
 
 app = Flask(__name__)
-db = firestore.Client(project="uiw-sentinel-agent")
+db = firestore.Client(project="uiw-sentinel-agent", database="default")
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
