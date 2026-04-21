@@ -28,6 +28,18 @@ def save_threat_analysis():
                 "mitigation_recommendation": "Safe email, no action needed"
             }
         ]
+        {
+        "id": "sample_4",
+        "type": "phishing",
+        "subject": "Your PayPal Account Has Been Compromised",
+        "body": "Your PayPal account has been compromised. Click here immediately to verify your identity or your account will be permanently suspended within 24 hours."
+    },
+    {
+        "id": "sample_5",
+        "type": "safe",
+        "subject": "Team Lunch Tomorrow",
+        "body": "Hey team, don't forget we have a lunch meeting tomorrow at noon in the conference room. See you all there!"
+    }
         
         for item in data:
             doc_id = item.pop("id")
