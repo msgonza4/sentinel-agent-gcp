@@ -26,7 +26,8 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no extr
 {
   "threat_score": <float between 0.0 and 1.0>,
   "threat_vectors": [<list of identified threat indicators as strings>],
-  "mitigation_recommendation": "<clear action the recipient should take>"
+  "mitigation_recommendation": "<clear action the recipient should take>",
+  "category": "<one of: Phishing, Spear Phishing, Business Email Compromise, Malware, Spam, Legitimate>"
 }
 
 Threat score guide:
@@ -35,6 +36,22 @@ Threat score guide:
 - 0.7 - 0.9: High risk / likely phishing
 - 1.0: Critical / confirmed phishing attempt
 """
+
+
+def get_threat_level(score):
+    if score >= 0.9:
+        return "CRITICAL"
+    elif score >= 0.7:
+        return "HIGH"
+    elif score >= 0.4:
+        return "MODERATE"
+    else:
+        return "LOW"
+
+
+def generate_doc_id():
+    now = datetime.datetime.utcnow()
+    return f"threat_{now.strftime('%Y%m%d_%H%M%S')}"
 
 
 @app.route('/analyze', methods=['POST'])
@@ -52,11 +69,8 @@ def analyze():
             prompt = f"{SYSTEM_PROMPT}\n\nEmail to analyze:\n\n{raw_email}"
             response = model.generate_content(prompt)
             response_text = response.text.strip()
-
-            # Strip markdown fences if Gemini wraps response in ```json ... ```
             response_text = re.sub(r"^```json\s*", "", response_text)
             response_text = re.sub(r"\s*```$", "", response_text)
-
             analysis = json.loads(response_text)
 
         except json.JSONDecodeError as e:
@@ -68,35 +82,53 @@ def analyze():
         except Exception as e:
             return jsonify({"error": f"Gemini call failed: {str(e)}"}), 500
 
-        doc_ref = db.collection("agent-findings").document()
-        doc_ref.set({
+        threat_score = analysis.get("threat_score", 0.0)
+        threat_level = get_threat_level(threat_score)
+        doc_id = generate_doc_id()
+
+        finding = {
             "email_text": raw_email,
-            "threat_score": analysis.get("threat_score", 0.0),
+            "threat_score": threat_score,
+            "threat_level": threat_level,
             "threat_vectors": analysis.get("threat_vectors", []),
             "mitigation_recommendation": analysis.get("mitigation_recommendation", ""),
+            "category": analysis.get("category", "Phishing"),
             "analyzed_by": "UIW-Sentinel-Alpha",
-            "timestamp": datetime.datetime.utcnow()
-        })
+            "status": "flagged" if threat_score >= 0.4 else "clean",
+            "timestamp": datetime.datetime.utcnow(),
+        }
+
+        doc_ref = db.collection("agent-findings").document(doc_id)
+        doc_ref.set(finding)
 
         return jsonify({
             "status": "saved",
-            "id": doc_ref.id,
-            "threat_score": analysis.get("threat_score"),
-            "threat_vectors": analysis.get("threat_vectors"),
-            "mitigation_recommendation": analysis.get("mitigation_recommendation")
+            "id": doc_id,
+            "threat_score": threat_score,
+            "threat_level": threat_level,
+            "threat_vectors": finding["threat_vectors"],
+            "mitigation_recommendation": finding["mitigation_recommendation"],
+            "category": finding["category"],
         }), 200
 
-    # --- PATH 2: Pre-scored JSON (original behavior, keep working) ---
-    doc_ref = db.collection("agent-findings").document()
+    # --- PATH 2: Pre-scored JSON (original behavior) ---
+    threat_score = data.get("threat_score", 0.0)
+    doc_id = generate_doc_id()
+
+    doc_ref = db.collection("agent-findings").document(doc_id)
     doc_ref.set({
         "subject": data.get("subject", "Unknown"),
-        "threat_score": data.get("threat_score", 0.0),
+        "threat_score": threat_score,
+        "threat_level": get_threat_level(threat_score),
         "threat_vectors": data.get("threat_vectors", []),
         "mitigation_recommendation": data.get("mitigation_recommendation", ""),
-        "timestamp": datetime.datetime.utcnow()
+        "category": data.get("category", "Phishing"),
+        "analyzed_by": "UIW-Sentinel-Alpha",
+        "status": "flagged" if threat_score >= 0.4 else "clean",
+        "timestamp": datetime.datetime.utcnow(),
     })
 
-    return jsonify({"status": "saved", "id": doc_ref.id}), 200
+    return jsonify({"status": "saved", "id": doc_id}), 200
 
 
 @app.route('/health', methods=['GET'])
