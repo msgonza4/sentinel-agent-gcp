@@ -11,7 +11,7 @@
 - [ ] NEW: Update Service Account with aiplatform.user permissions (Mia)
 - [ ] NEW: Define "System Spec" for Security & Model Drift protection (Mia/Terrel)
 - [ ] Initialize Agent Builder in Vertex AI (Terrel)
-- [ ] Configure Agent Tools & Reasoning via Cloud Opus 4.6
+- [ ] Configure Agent Tools & Reasoning via GEMINI 2.2
 - [ ] Deploy Prototype Agent to Vertex AI Sandbox
 
 ## [April 6 - April 19] Phase 3: Data & Security
