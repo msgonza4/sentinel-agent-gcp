@@ -36,7 +36,7 @@ Database: Cloud Firestore (Native Mode)
 
 AI Orchestration: Vertex AI Agent Builder
 
-Model: Cloud Opus 4.6 (Reasoning Engine)
+Model: GEMINI 2.2 (Reasoning Engine)
 
 Security: IAM Workload Identity Federation
 
