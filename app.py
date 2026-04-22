@@ -12,7 +12,7 @@ app = Flask(__name__)
 # --- Config ---
 PROJECT_ID = "uiw-sentinel-agent"
 LOCATION = "us-central1"
-MODEL_ID = "gemini-2.0-flash-001"
+MODEL_ID = "gemini-1.5-flash"
 
 # --- Init ---
 vertexai.init(project=PROJECT_ID, location=LOCATION)
