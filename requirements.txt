@@ -1,3 +1,5 @@
 flask==3.0.0
 google-cloud-firestore==2.13.1
 gunicorn==21.2.0
+google-cloud-aiplatform==1.47.0
+vertexai==1.47.0
