@@ -23,7 +23,7 @@ To ensure compatibility with the Firestore persistence layer (Issue #4), the age
 }
 
 
-5. Operational Guardrails
+4. Operational Guardrails
 
 Scope: The agent shall only analyze text provided in the input. It shall not hallucinate external context.
 
