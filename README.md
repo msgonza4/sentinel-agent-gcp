@@ -18,6 +18,7 @@ Database: Cloud Firestore (Real-time, structured threat repository).  CI/CD: Git
 Security: IAM Workload Identity Federation for keyless, zero-trust authentication.  
 
 👥 The Team
+
 Mia Gonzalez (@msgonza4): Security & DevOps Lead. Responsible for the Zero-Trust security posture, IAM Identity Federation, system specifications, and documentation of the human element in cybersecurity.  
 
 Terrell Elliott (@T-Elliott01): Infrastructure & Cloud Architect. Responsible for GCP API ecosystem setup, Cloud Run orchestration, and core Python/Flask API development.  
@@ -32,5 +33,7 @@ Terrell Elliott (@T-Elliott01): Infrastructure & Cloud Architect. Responsible fo
 📅 Roadmap
 
 [x] Phase 1: Infrastructure & IAM Handshake
+
 [x]Phase 2: Agentic Orchestration & Cloud Run Deployment
+
 [x]Phase 3: Integration Testing & Threat Database Population
