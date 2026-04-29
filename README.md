@@ -25,7 +25,10 @@ Terrell Elliott (@T-Elliott01): Infrastructure & Cloud Architect. Responsible fo
 
 🚀 Project Phases
 
+
 *Phase 1: Infrastructure & Identity (Complete)
+
+
 
 We established a hardened environment following the principle of "Least Privilege": 
 
@@ -35,7 +38,10 @@ Cloud Provisioning: Enabled the Vertex AI Platform and Cloud Run ecosystems.
 
 Identity Hardening: Provisioned a dedicated service account (sentinel-bot) with minimal scoped permissions.
 
+
 *Phase 2: Agentic Orchestration & Deployment (Complete)
+
+
 
 Automated Pipeline: Configured GitHub Actions to build Docker containers and deploy to Cloud Run automatically upon every code push.  
 
@@ -43,7 +49,10 @@ Threat Scoring: Developed a 0.0 to 1.0 scoring system to categorize threats from
 
 Live API: Launched a 24/7 API endpoint that processes email submissions and returns structured JSON analysis.  
 
+
 *Phase 3: Integration & Evaluation (Complete)
+
+
 
 Real-World Testing: Validated the system against diverse scenarios, including Phishing, Business Email Compromise (BEC), and legitimate institutional communications.
 
