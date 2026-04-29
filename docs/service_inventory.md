@@ -25,7 +25,7 @@ Vertex AI Platform (aiplatform.googleapis.com): The primary environment for our 
 
 Vertex AI Agent Builder: Used to construct the autonomous "Sentinel" without manual scripting, per professor guidance.
 
-Cloud Opus 4.6 / Gemini 1.5 Pro: The high-reasoning LLMs used as the "Brain" of the agent for complex threat detection.
+Gemini 2.5 Pro: The high-reasoning LLMs used as the "Brain" of the agent for complex threat detection.
 
 Cloud Firestore (firestore.googleapis.com): Our NoSQL database for storing agent findings and real-time logs.
 
