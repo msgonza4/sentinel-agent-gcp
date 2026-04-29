@@ -7,17 +7,32 @@ from google.cloud import firestore
 import vertexai
 from vertexai.generative_models import GenerativeModel
 
+# Flask is the web framework that turns this Python script into a live API
+# When deployed to Cloud Run, it listens for incoming requests 24/7
+
 app = Flask(__name__)
 
-# --- Config ---
+# --- Project Configuration ---
+# These values tell the app which GCP project, region, and AI model to use
+
 PROJECT_ID = "uiw-sentinel-agent"
 LOCATION = "us-central1"
 MODEL_ID = "gemini-2.0-flash"
 
-# --- Init ---
+# --- Initialize Google Cloud Services ---
+# Connect to Vertex AI so we can call Gemini for analysis
+
 vertexai.init(project=PROJECT_ID, location=LOCATION)
 db = firestore.Client(project=PROJECT_ID, database="default")
+
+# Load the Gemini model — this is the AI that reads and analyzes every email
 model = GenerativeModel(MODEL_ID)
+
+# --- System Prompt (The AI's Instructions) ---
+# This is the most important part of the analysis logic.
+# It tells Gemini exactly how to behave — like giving a security analyst their job description.
+# The agent is instructed to ONLY return structured JSON so we can parse and save it automatically.
+# This is what we call "Spec-Driven Development" — the AI follows a strict ruleset every time.
 
 SYSTEM_PROMPT = """You are UIW-Sentinel-Alpha, a cybersecurity threat analysis agent.
 Analyze the provided email text for phishing indicators and threats.
